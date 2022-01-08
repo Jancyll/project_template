@@ -1,2 +1,5 @@
-# project_template
- A basic template for research project 
+# Data Analysis Process
+## Find the data
+## Data preprocessing
+
+4. 
