@@ -1,0 +1,89 @@
+
+\documentclass{article}
+\usepackage{natbib}
+\usepackage{verbatim}
+
+% \newcommand{\detailtexcount}[1]{%
+%   \immediate\write18{texcount -merge -sum -q #1.tex output.bbl > #1.wcdetail }%
+%   \verbatiminput{#1.wcdetail}%
+% }
+
+% \newcommand{\quickwordcount}[1]{%
+%   \immediate\write18{texcount -1 -sum -merge -q #1.tex output.bbl > #1-words.sum }%
+%   \input{#1-words.sum} words%
+% }
+
+% \newcommand{\quickcharcount}[1]{%
+%   \immediate\write18{texcount -1 -sum -merge -char -q #1.tex output.bbl > #1-chars.sum }%
+%   \input{#1-chars.sum} characters (not including spaces)%
+% }
+
+\newcommand\wordcount[1]{
+    \immediate\write18{texcount -sub=section \jobname.tex  | grep "Section" | sed -e 's/+.*//' | sed -n \thesection p > 'count.txt'}
+(\input{count.txt}words)}
+
+\makeatletter
+\newcommand{\quickwordcount}[1]{%
+  \immediate\write18{texcount -1 -sum -merge #1.tex > #1-words}%
+  \immediate\openin\somefile=#1-words%
+  \read\somefile to \@@localdummy%
+  \immediate\closein\somefile%
+  \setcounter{wordcounter}{\@@localdummy}%
+  \@@localdummy%
+}
+\makeatother
+
+
+
+
+\begin{document}
+% For citations, use the biblatex-chicago package
+
+2/4: 164
+2/7: 
+
+\section{LR Related}
+
+\cite{krupka2013identifying} identify social norms using simple coordination games. Different from previous literature using social norms as treatment, their study measure social norms and then use social norms to predict behaviors, which shows a stable preference of participants to comply social norms. 
+
+\cite{engl2021spillover} exam the spillover effects of pro-social enforcement across institutions. Their work tackles the problem about using institutions enforcement to increase cooperation behaviors in social dilemmas that exists in situations like public goods game. But their focus is on the spillover effects of the institutional enforcement from one domain to another. 
+
+\cite{lazear2012sorting} emphasis on how form of sorting affects social-preference types. 
+
+\cite{chang2019rhetoric} shows the framing effect on social norms that influence choice in a series of dictator games, which offers possibility that the different framing of social norms will have different influences on behaviors in public goods game. They show that frames evoke different norms and lead to different interpretations of actions. 
+
+Cox et al. (2021) points out the challenge for choice theory is how to "refer to something external to choice behavior" (Sen, 1993, p. 495). They propose a choice theory that offers observable moral reference points, which incorporates endowments and minimal expectations payoffs in public good games. They find that moral monotonicity theory is consistent with the data and predicts participants' behavior in both provision game and appropriation game and with conditions like nonbinding quotas.  
+
+\cite{fehr2018normative} explores the effects of norms compliance on human cooperation behaviors. In their utility model, if individual deviate their behavior from the social norms, it will generate some disutility. They will also have psychological costs of negative deviations. They argue that a social norm of conditional cooperation can help explain some recent facts and findings in public good games. They summarize the motivations of norms as intrinsic motivational properties like self-image, desire for fairness, social preference of equity, reciprocity, guilt aversion. They summarize that social norms offer a focal point so players' normative judgements and decisions are coordinated on this focal point. These norm elicitation approaches establish a correlation between the social norms and actual cooperative behavior, while do not yet show the cooperation behavior is causally affected by social norms. Their results show that the existence of a conditional cooperation norm in social dilemma situations, while there is little or no evidence that punishment of free-riders builds a social norm.  They view the norms compliance as an act of cooperation and the prevalence of social norms is a crucial determinant of human cooperation. 
+
+\cite{cialdini1991focus} and \cite{kallgren2000focus} show the potential cuasal effect of social norms on conditional cooperation by assuming that social norms need to be salient and activated. The causal effects of social norms can be identified through variation of the salience of the norms information. These empirical works show that when subjects is revealed with norms information they begin to act in a more norm-congruent way. However, the motivation behind social norms that drive the behavior change is still unknown. 
+
+\cite{kimbrough2016norms} use an incentivized method to elicit the social norms in public good game by asking subjects' view of the appropriateness of contributions conditional on other group members' behavior. 
+
+\cite{fehr2018dynamics} test the effects of norm formation with peer punishment on public good games. Their result show norm formation has no impact on contribution when punishment is absent, while the norm formation causes a significant and stable increase in cooperative contribution in the presence of the punishment. Their results suggest that pure intrinsic motives for norm compliance are not sufficiently strong to establish a stable norm compliance and behavior change and the punishment threat is needed. The punishment setting in public goods game increase in cooperation rate, however, it fails to increase the overall welfare for an extended period of time due to the high collateral cost of the punishment. 
+
+\cite{krupka2016differential}
+
+
+\section{writing tips}
+1. words: corroborate; confirm; highlight; investigate 
+
+
+% \wordcount
+
+% section count
+% % Don't count these!
+% %TC:ignore
+% \quickwordcount{main}
+% \quickcharcount{main}
+% \detailtexcount{main}
+% %TC:endignore
+
+Total number of words: \quickwordcount{LR} 
+
+\clearpage
+% \printbibliography
+\bibliography{works-cited}
+\bibliographystyle{chicago}
+
+\end{document}
